@@ -1,101 +1,108 @@
-body {
+* {
+  box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f5f5f7;
-  margin: 0;
-  padding: 0;
 }
 
-.container {
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5f5f7;
+  color: #222;
+}
+
+.page {
   max-width: 900px;
-  margin: 2rem auto;
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  margin: 0 auto;
+  padding: 24px 16px 40px;
 }
 
 h1 {
   margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 26px;
 }
 
 .subtitle {
+  margin-top: 0;
+  margin-bottom: 20px;
   color: #555;
+  font-size: 14px;
 }
 
-.bot-buttons {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px 16px 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
-.bot-button {
-  flex: 1;
-  padding: 0.6rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid #ccc;
-  background: #f9f9fb;
-  cursor: pointer;
-  font-size: 0.9rem;
+.card h2 {
+  margin-top: 0;
+  font-size: 18px;
 }
 
-.bot-button.active {
-  background: #111827;
-  color: white;
-  border-color: #111827;
-}
-
-.panel {
-  margin-bottom: 1.5rem;
-}
-
-label {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 0.5rem;
+select,
+textarea,
+input[type="file"] {
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 textarea {
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 0.5rem;
   resize: vertical;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
-#sendBtn {
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
+button {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 8px 16px;
+  border-radius: 4px;
   border: none;
-  background: #111827;
-  color: white;
+  background: #2563eb;
+  color: #fff;
+  font-size: 14px;
   cursor: pointer;
 }
 
-#sendBtn:disabled {
-  opacity: 0.6;
-  cursor: wait;
+button:hover {
+  background: #1d4ed8;
 }
 
-.drop-zone {
-  border: 2px dashed #aaa;
-  border-radius: 12px;
-  padding: 1.5rem;
-  text-align: center;
-  background: #fafafa;
-  cursor: pointer;
-}
-
-.drop-zone.drag-over {
-  background: #e5e7eb;
-  border-color: #111827;
-}
-
-.output {
+.result-box {
+  margin-top: 12px;
+  border-radius: 4px;
   background: #f3f4f6;
-  border-radius: 8px;
-  padding: 0.75rem;
-  margin-top: 0.75rem;
+  padding: 8px 10px;
+}
+
+.result-box h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+pre {
+  margin: 0;
+  font-size: 13px;
   white-space: pre-wrap;
-  font-size: 0.85rem;
+  word-break: break-word;
+}
+
+.hint {
+  font-size: 13px;
+  color: #666;
+}
+
+footer {
+  margin-top: 24px;
+}
+
+.footer-text {
+  font-size: 12px;
+  color: #777;
+  text-align: center;
 }

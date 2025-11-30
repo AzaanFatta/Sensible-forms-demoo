@@ -1,108 +1,78 @@
-// Change this if your backend URL is different in the future
+// CHANGE THIS to your Render backend URL if needed
 const API_BASE = "https://sensible-forms-demoo.onrender.com";
 
-let selectedBot = "question";
-
-const botButtons = document.querySelectorAll(".bot-button");
-const messageInput = document.getElementById("message");
+const botSelect = document.getElementById("botSelect");
+const userMessage = document.getElementById("userMessage");
 const sendBtn = document.getElementById("sendBtn");
-const chatOutput = document.getElementById("chatOutput");
+const chatResult = document.getElementById("chatResult");
 
-const dropZone = document.getElementById("dropZone");
 const fileInput = document.getElementById("fileInput");
-const uploadOutput = document.getElementById("uploadOutput");
+const uploadBtn = document.getElementById("uploadBtn");
+const uploadResult = document.getElementById("uploadResult");
 
-// Bot selection
-botButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    botButtons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-    selectedBot = btn.getAttribute("data-bot");
-    chatOutput.textContent = "";
-    uploadOutput.textContent = "";
-  });
-});
-
-// Chat submit
+// 1. Send chat message to /api/chat
 sendBtn.addEventListener("click", async () => {
-  const message = messageInput.value.trim();
-  if (!message) return;
+  const bot = botSelect.value;
+  const message = userMessage.value.trim();
 
-  sendBtn.disabled = true;
-  chatOutput.textContent = "Sending to webserver...";
-
-  const formData = new FormData();
-  formData.append("bot", selectedBot);
-  formData.append("message", message);
+  if (!message) {
+    chatResult.textContent = "Please type a message first.";
+    return;
+  }
 
   try {
+    const formData = new FormData();
+    formData.append("bot", bot);
+    formData.append("message", message);
+
     const res = await fetch(`${API_BASE}/api/chat`, {
       method: "POST",
       body: formData,
     });
 
+    if (!res.ok) {
+      chatResult.textContent = `Error from server: ${res.status}`;
+      return;
+    }
+
     const data = await res.json();
-    chatOutput.textContent = data.reply || JSON.stringify(data, null, 2);
+    // Show just the reply in a simple way
+    chatResult.textContent = data.reply || JSON.stringify(data, null, 2);
   } catch (err) {
     console.error(err);
-    chatOutput.textContent = "Error: could not reach the webserver.";
-  } finally {
-    sendBtn.disabled = false;
+    chatResult.textContent = "Network error – could not reach backend.";
   }
 });
 
-// Drag-and-drop logic
-dropZone.addEventListener("click", () => {
-  fileInput.click();
-});
+// 2. Upload file to /api/upload
+uploadBtn.addEventListener("click", async () => {
+  const bot = botSelect.value;
+  const file = fileInput.files[0];
 
-fileInput.addEventListener("change", () => {
-  if (fileInput.files.length > 0) {
-    handleFileUpload(fileInput.files[0]);
-  }
-});
-
-dropZone.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  dropZone.classList.add("drag-over");
-});
-
-dropZone.addEventListener("dragleave", () => {
-  dropZone.classList.remove("drag-over");
-});
-
-dropZone.addEventListener("drop", (e) => {
-  e.preventDefault();
-  dropZone.classList.remove("drag-over");
-  const files = e.dataTransfer.files;
-  if (files.length > 0) {
-    handleFileUpload(files[0]);
-  }
-});
-
-async function handleFileUpload(file) {
-  uploadOutput.textContent = "";
-  if (!file.name.toLowerCase().endsWith(".csv")) {
-    uploadOutput.textContent = "Only CSV files are supported in this prototype.";
+  if (!file) {
+    uploadResult.textContent = "Please choose a CSV file first.";
     return;
   }
 
-  const formData = new FormData();
-  formData.append("bot", selectedBot);
-  formData.append("file", file);
-
-  uploadOutput.textContent = "Uploading to webserver...";
-
   try {
+    const formData = new FormData();
+    formData.append("bot", bot);
+    formData.append("file", file);
+
     const res = await fetch(`${API_BASE}/api/upload`, {
       method: "POST",
       body: formData,
     });
 
+    if (!res.ok) {
+      uploadResult.textContent = `Error from server: ${res.status}`;
+      return;
+    }
+
     const data = await res.json();
-    uploadOutput.textContent = JSON.stringify(data, null, 2);
+    uploadResult.textContent = JSON.stringify(data, null, 2);
   } catch (err) {
     console.error(err);
-    uploadOutput.textContent = "Error: could not reach the webserver.";
+    uploadResult.textContent = "Network error – could not reach backend.";
   }
-}
+});

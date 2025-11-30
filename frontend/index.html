@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Sensible Forms – UI/UX Prototype</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Sensible Forms</h1>
-    <p class="subtitle">Select a bot, type a message, or upload a CSV file.</p>
+  <div class="page">
+    <h1>Sensible Forms – UI/UX Subsystem</h1>
+    <p class="subtitle">
+      Simple prototype UI to talk to the three bots and upload a CSV file.
+    </p>
 
-    <!-- Bot selection -->
-    <div class="bot-buttons">
-      <button data-bot="question" class="bot-button active">Question Generation</button>
-      <button data-bot="form" class="bot-button">Form Deployment</button>
-      <button data-bot="analysis" class="bot-button">Analysis Assistant</button>
-    </div>
+    <!-- Bot Selection -->
+    <section class="card">
+      <h2>1. Choose a Bot</h2>
+      <select id="botSelect">
+        <option value="question">Question Generation Bot</option>
+        <option value="form">Form Deployment Bot</option>
+        <option value="analysis">Analysis Assistant Bot</option>
+      </select>
+    </section>
 
-    <!-- Chat area -->
-    <div class="panel">
-      <label for="message">Chat with the selected bot:</label>
-      <textarea id="message" rows="3" placeholder="Describe your survey, form, or analysis question..."></textarea>
+    <!-- Chat Area -->
+    <section class="card">
+      <h2>2. Chat with the Bot</h2>
+      <textarea id="userMessage" rows="3" placeholder="Type your question or instructions here..."></textarea>
       <button id="sendBtn">Send</button>
-      <pre id="chatOutput" class="output"></pre>
-    </div>
 
-    <!-- Drag-and-drop upload -->
-    <div class="panel">
-      <label>Upload a CSV file (drag-and-drop):</label>
-      <div id="dropZone" class="drop-zone">
-        <p>Drag & drop a CSV file here, or click to select one.</p>
-        <input type="file" id="fileInput" accept=".csv" hidden />
+      <div class="result-box">
+        <h3>Bot Reply</h3>
+        <pre id="chatResult">(no reply yet)</pre>
       </div>
-      <pre id="uploadOutput" class="output"></pre>
-    </div>
+    </section>
+
+    <!-- File Upload Area -->
+    <section class="card">
+      <h2>3. Upload a CSV File</h2>
+      <p class="hint">
+        This simulates sending a CSV to the selected bot (for deployment or analysis).
+      </p>
+
+      <input type="file" id="fileInput" accept=".csv">
+      <button id="uploadBtn">Upload File</button>
+
+      <div class="result-box">
+        <h3>Upload Result</h3>
+        <pre id="uploadResult">(no file uploaded yet)</pre>
+      </div>
+    </section>
+
+    <footer>
+      <p class="footer-text">
+        UI/UX prototype – connects to FastAPI webserver (Render) for the Sensible Forms project.
+      </p>
+    </footer>
   </div>
 
   <script src="app.js"></script>
