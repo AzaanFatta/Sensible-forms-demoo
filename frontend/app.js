@@ -1,5 +1,5 @@
 // Change this if your backend URL is different in the future
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = "https://sensible-forms-demoo.onrender.com";
 
 let selectedBot = "question";
 
