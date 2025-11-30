@@ -1,0 +1,101 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f5f5f7;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.subtitle {
+  color: #555;
+}
+
+.bot-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.bot-button {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #f9f9fb;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.bot-button.active {
+  background: #111827;
+  color: white;
+  border-color: #111827;
+}
+
+.panel {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  resize: vertical;
+}
+
+#sendBtn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: #111827;
+  color: white;
+  cursor: pointer;
+}
+
+#sendBtn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.drop-zone {
+  border: 2px dashed #aaa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.drop-zone.drag-over {
+  background: #e5e7eb;
+  border-color: #111827;
+}
+
+.output {
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+}

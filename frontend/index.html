@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sensible Forms – UI/UX Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Sensible Forms – Workbench Demo</h1>
+    <p class="subtitle">Select a bot, type a message, or upload a CSV file.</p>
+
+    <!-- Bot selection -->
+    <div class="bot-buttons">
+      <button data-bot="question" class="bot-button active">Question Generation</button>
+      <button data-bot="form" class="bot-button">Form Deployment</button>
+      <button data-bot="analysis" class="bot-button">Analysis Assistant</button>
+    </div>
+
+    <!-- Chat area -->
+    <div class="panel">
+      <label for="message">Chat with the selected bot:</label>
+      <textarea id="message" rows="3" placeholder="Describe your survey, form, or analysis question..."></textarea>
+      <button id="sendBtn">Send</button>
+      <pre id="chatOutput" class="output"></pre>
+    </div>
+
+    <!-- Drag-and-drop upload -->
+    <div class="panel">
+      <label>Upload a CSV file (drag-and-drop):</label>
+      <div id="dropZone" class="drop-zone">
+        <p>Drag & drop a CSV file here, or click to select one.</p>
+        <input type="file" id="fileInput" accept=".csv" hidden />
+      </div>
+      <pre id="uploadOutput" class="output"></pre>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
